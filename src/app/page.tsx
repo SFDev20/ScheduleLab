@@ -31,6 +31,9 @@ export default function Home() {
         <button><Image src={"/images/additives/Viagra.webp"} width={70} height={70} alt="cocaine"/></button>
       </div>
       <div id="Interactive-Mix">
+        <button></button>
+        <button></button>
+        <button></button>
       </div>
       <div id="Historial-List">
       </div>
