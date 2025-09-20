@@ -96,6 +96,9 @@
     height: 85px;
     background-color: rgba(0,0,0,0.2);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #Interactive-Mix button:hover{
     outline: 3px solid green;

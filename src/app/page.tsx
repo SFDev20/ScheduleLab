@@ -1,41 +1,77 @@
+"use client"
 import Image from "next/image";
 import "./page.css"
 import { FaPlus } from "react-icons/fa6";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { useState } from "react";
+import drug_list from "../data/drug-list"
+import additives_list from "../data/additives-list"
 
 export default function Home() {
+  const [drug,setDrug] = useState(-1)
+  const [additive,setAdditive] = useState(-1)
+  const handleSetDrug = (index: number) => {
+    if(index === drug){
+      setDrug(-1)
+    }else{
+      setDrug(index)
+    }
+  }
+  const handleSetAdditive = (index: number) => {
+    if(index === additive){
+      setAdditive(-1)
+    }else{
+      setAdditive(index)
+    }
+  }
   return (
     <div id="Mix-Panel">
       <div id="Drugs-List">
-        <button><Image src={"/images/drugs/OGKush.webp"} width={75} height={75} alt="ogkush"/></button>
-        <button><Image src={"/images/drugs/SourDiesel.webp"} width={75} height={75} alt="sourdiesel"/></button>
-        <button><Image src={"/images/drugs/GreenCrack.webp"} width={75} height={75} alt="greencrack"/></button>
-        <button><Image src={"/images/drugs/GranddaddyPurple.webp"} width={75} height={75} alt="granddaddypurple"/></button>
-        <button><Image src={"/images/drugs/Meth.webp"} width={75} height={75} alt="meth"/></button>
-        <button><Image src={"/images/drugs/Cocaine.webp"} width={75} height={75} alt="cocaine"/></button>
+        {drug_list.map((drug_item: string, i: number) => (
+          <button 
+            style={{outline: (drug == i ? "3px solid green" : undefined)}}
+            onClick={()=>handleSetDrug(i)}
+            key={i}>
+            <Image src={`/images/drugs/${drug_item}.webp`}
+              width={70}
+              height={70}
+              alt={drug_item}/>
+          </button>
+        ))}
       </div>
       <div id="Additives-List">
-        <button><Image src={"/images/additives/Addy.webp"} width={70} height={70} alt="ogkush"/></button>
-        <button><Image src={"/images/additives/Banana.webp"} width={70} height={70} alt="sourdiesel"/></button>
-        <button><Image src={"/images/additives/Battery.webp"} width={70} height={70} alt="greencrack"/></button>
-        <button><Image src={"/images/additives/Chili.webp"} width={70} height={70} alt="granddaddypurple"/></button>
-        <button><Image src={"/images/additives/Cuke.webp"} width={70} height={70} alt="meth"/></button>
-        <button><Image src={"/images/additives/Donut.webp"} width={70} height={70} alt="cocaine"/></button>
-        <button><Image src={"/images/additives/Energy_Drink.webp"} width={70} height={70} alt="ogkush"/></button>
-        <button><Image src={"/images/additives/Flu_Medicine.webp"} width={70} height={70} alt="sourdiesel"/></button>
-        <button><Image src={"/images/additives/Gasoline.webp"} width={70} height={70} alt="greencrack"/></button>
-        <button><Image src={"/images/additives/HorseSemen.webp"} width={70} height={70} alt="granddaddypurple"/></button>
-        <button><Image src={"/images/additives/Iodine.webp"} width={70} height={70} alt="meth"/></button>
-        <button><Image src={"/images/additives/Mega_Bean.webp"} width={70} height={70} alt="cocaine"/></button>
-        <button><Image src={"/images/additives/Motor_Oil.webp"} width={70} height={70} alt="greencrack"/></button>
-        <button><Image src={"/images/additives/Mouth_Wash.webp"} width={70} height={70} alt="granddaddypurple"/></button>
-        <button><Image src={"/images/additives/Paracetamol.webp"} width={70} height={70} alt="meth"/></button>
-        <button><Image src={"/images/additives/Viagra.webp"} width={70} height={70} alt="cocaine"/></button>
+        {additives_list.map((additive_item: string, i: number) => (
+          <button
+            style={{outline: (additive == i ? "3px solid green" : undefined)}}
+            onClick={()=>handleSetAdditive(i)}
+            key={i}>
+            <Image src={`/images/additives/${additive_item}.webp`}
+              width={70}
+              height={70}
+              alt={additive_item}/>
+          </button>
+        ))}
       </div>
       <div id="Interactive-Mix">
-        <button></button>
+        <button>
+          {drug != -1 ? 
+            <Image
+              alt={drug_list[drug]}
+              width={75}
+              height={75}
+              src={`/images/drugs/${drug_list[drug]}.webp`}
+              /> : ""}
+        </button>
         <FaPlus style={{fontSize:"28px", color:"rgba(255,255,255,0.4)"}}/>
-        <button></button>
+        <button>
+          {additive != -1 ?
+            <Image
+              alt={additives_list[additive]}
+              width={75}
+              height={75}
+              src={`/images/additives/${additives_list[additive]}.webp`}
+            /> : ""}
+        </button>
         <FaLongArrowAltRight style={{fontSize:"28px", color:"rgba(255,255,255,0.4)"}}/>
         <button></button>
       </div>
