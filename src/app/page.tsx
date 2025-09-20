@@ -1,5 +1,7 @@
 import Image from "next/image";
 import "./page.css"
+import { FaPlus } from "react-icons/fa6";
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -32,7 +34,9 @@ export default function Home() {
       </div>
       <div id="Interactive-Mix">
         <button></button>
+        <FaPlus style={{fontSize:"28px", color:"rgba(255,255,255,0.4)"}}/>
         <button></button>
+        <FaLongArrowAltRight style={{fontSize:"28px", color:"rgba(255,255,255,0.4)"}}/>
         <button></button>
       </div>
       <div id="Historial-List">
