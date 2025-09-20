@@ -6,6 +6,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { useState } from "react";
 import drug_list from "../data/drug-list"
 import additives_list from "../data/additives-list"
+import combinations_list from "@/data/combinations-list";
 
 export default function Home() {
   const [drug,setDrug] = useState(-1)
@@ -27,28 +28,28 @@ export default function Home() {
   return (
     <div id="Mix-Panel">
       <div id="Drugs-List">
-        {drug_list.map((drug_item: string, i: number) => (
+        {drug_list.map((drug_item, i: number) => (
           <button 
             style={{outline: (drug == i ? "3px solid green" : undefined)}}
             onClick={()=>handleSetDrug(i)}
             key={i}>
-            <Image src={`/images/drugs/${drug_item}.webp`}
+            <Image src={`/images/drugs/${drug_item.item}.webp`}
               width={70}
               height={70}
-              alt={drug_item}/>
+              alt={drug_item.item}/>
           </button>
         ))}
       </div>
       <div id="Additives-List">
-        {additives_list.map((additive_item: string, i: number) => (
+        {additives_list.map((additive_item, i: number) => (
           <button
             style={{outline: (additive == i ? "3px solid green" : undefined)}}
             onClick={()=>handleSetAdditive(i)}
             key={i}>
-            <Image src={`/images/additives/${additive_item}.webp`}
+            <Image src={`/images/additives/${additive_item.item}.webp`}
               width={70}
               height={70}
-              alt={additive_item}/>
+              alt={additive_item.item}/>
           </button>
         ))}
       </div>
@@ -56,24 +57,27 @@ export default function Home() {
         <button>
           {drug != -1 ? 
             <Image
-              alt={drug_list[drug]}
+              alt={drug_list[drug].item}
               width={75}
               height={75}
-              src={`/images/drugs/${drug_list[drug]}.webp`}
+              src={`/images/drugs/${drug_list[drug].item}.webp`}
               /> : ""}
         </button>
         <FaPlus style={{fontSize:"28px", color:"rgba(255,255,255,0.4)"}}/>
         <button>
           {additive != -1 ?
             <Image
-              alt={additives_list[additive]}
+              alt={additives_list[additive].item}
               width={75}
               height={75}
-              src={`/images/additives/${additives_list[additive]}.webp`}
+              src={`/images/additives/${additives_list[additive].item}.webp`}
             /> : ""}
         </button>
         <FaLongArrowAltRight style={{fontSize:"28px", color:"rgba(255,255,255,0.4)"}}/>
-        <button></button>
+        <button>
+          { additive != -1 && drug != -1 ?
+        <p>{combinations_list[drug_list[drug].effect][additives_list[additive].item]}</p> : undefined}
+        </button>
       </div>
       <div id="Historial-List">
       </div>
